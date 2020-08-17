@@ -72,7 +72,7 @@ describe('DnaReader', () => {
             }), 500, 'Dna mapping did not complete on time.');
         });
 
-        it('raises an "error" through the stream when there is a problem with the dna stream', async () => {
+        it('raises an "error" through the stream when it encounters incorrect letters in the dna data sequence', async () => {
             const readStreamWithBadData = Readable.from(['AAAKAAA']);
             const genePrefix = 'A';
 
@@ -94,7 +94,7 @@ describe('DnaReader', () => {
 
         });
 
-        it('raises an "error" through the stream when there is a problem with the dna sequence', async () => {
+        it('raises an "error" through the stream when there is a problem with the dna stream', async () => {
             const dnaStream = new PassThrough();
             const genePrefix = 'A';
 
@@ -106,7 +106,7 @@ describe('DnaReader', () => {
 
                 // We expect this to occur when we destroy the stream
                 dnaReader.on('error', (msg) => {
-                    expect(msg).to.eq('An error has occured while reading the stream.');
+                    expect(msg).to.eq('An error has occurred while reading the stream.');
                     resolve();
                 });
 
@@ -121,8 +121,10 @@ describe('DnaReader', () => {
         it('raises a "gene" event for every gene discovered in the dna sequence', async () => {
             // Generate a dna sequence
             const genePrefix = 'AAAAAAA';
-            const originalGenes = _generateGenes(10, 8, genePrefix);
+            const originalGenes = ['AAAAAAAACCCC', 'AAAAAAAATG']; // _generateGenes(10, 8, genePrefix);
             const dnaSequence = originalGenes.join('');
+
+
 
             // Create a read stream from the dna data
             const dnaReadStream = Readable.from([dnaSequence]);
@@ -133,6 +135,7 @@ describe('DnaReader', () => {
         it('can consume long streams read with multiple data chunks', async () => {
             const genePrefix = 'AAAAAAA';
             const originalGenes = _generateGenes(15, 8, genePrefix);
+            console.log(originalGenes);
 
             const dnaStreamSplit = [
                 originalGenes.slice(0, 6).join(''),
@@ -197,13 +200,14 @@ const _generateGenes = (count, maxLength, prefix) => {
 
     const genes = [];
     for(let geneIndex = 0; geneIndex < count; geneIndex ++) {
-        const numOfCharactersInGene = Math.floor(Math.random() * maxLength);
+        const numOfCharactersInGene = Math.floor(Math.random() * maxLength) + 1;
         let geneString = '';
         for (let charIndex = 0; charIndex < numOfCharactersInGene; charIndex++) {
             const nextChar = geneLetters[Math.floor(Math.random() * 4)];
             geneString += nextChar;
-            geneString = prefix + geneString;
         }
+        geneString = prefix + geneString;
+
         genes.push(geneString);
     }
 
@@ -237,6 +241,6 @@ const _expectDiscoveredGenes = async (originalGenes, dnaReadStream, genePrefix) 
     const sortedDiscoveredGenes = discoveredGenes.sort();
 
     for (let i = 0; i < sortedOriginalGenes.length; i++) {
-        expect(sortedOriginalGenes[i].to.eq(sortedDiscoveredGenes[0]));
+        expect(sortedOriginalGenes[i]).to.eq(sortedDiscoveredGenes[i]);
     }
 };

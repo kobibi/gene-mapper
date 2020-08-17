@@ -2,10 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="191de37c-cdaf-4a17-ba43-58ca1b4bc999" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/lib/stream-processor.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/dna-reader.js" beforeDir="false" afterPath="$PROJECT_DIR$/lib/dna-reader.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/gene-mapper.js" beforeDir="false" afterPath="$PROJECT_DIR$/lib/gene-mapper.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/test/unit/gene-mapper-test.js" beforeDir="false" afterPath="$PROJECT_DIR$/test/unit/gene-mapper-test.js" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
@@ -40,20 +39,41 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/lib/dna-reader.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="375">
-              <caret line="25" column="13" selection-start-line="25" selection-start-column="13" selection-end-line="25" selection-end-column="13" />
+            <state relative-caret-position="150">
+              <caret line="38" column="20" selection-start-line="38" selection-start-column="20" selection-end-line="38" selection-end-column="20" />
             </state>
           </provider>
         </entry>
       </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="mock://internal/process/next_tick.js">
+          <provider selected="true" editor-type-id="vmFileEditor" />
+        </entry>
+      </file>
       <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/lib/stream-processor.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="171">
+              <caret line="58" column="21" selection-start-line="58" selection-start-column="21" selection-end-line="58" selection-end-column="21" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="mock://events.js">
+          <provider selected="true" editor-type-id="vmFileEditor" />
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="mock://_stream_readable.js">
+          <provider selected="true" editor-type-id="vmFileEditor" />
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/test/unit/gene-mapper-test.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="93">
-              <caret line="92" selection-start-line="92" selection-end-line="92" />
-              <folding>
-                <element signature="e#7394#7413#0" />
-              </folding>
+            <state relative-caret-position="134">
+              <caret line="243" column="8" selection-start-line="243" selection-start-column="8" selection-end-line="243" selection-end-column="8" />
             </state>
           </provider>
         </entry>
@@ -69,6 +89,11 @@
       </file>
     </leaf>
   </component>
+  <component name="FindInProjectRecents">
+    <findStrings>
+      <find>pass</find>
+    </findStrings>
+  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
@@ -80,18 +105,7 @@
         <option value="$PROJECT_DIR$/lib/gene-mapper.js" />
         <option value="$PROJECT_DIR$/lib/dna-reader.js" />
         <option value="$PROJECT_DIR$/test/unit/gene-mapper-test.js" />
-      </list>
-    </option>
-  </component>
-  <component name="ProjectConfigurationFiles">
-    <option name="files">
-      <list>
-        <option value="$PROJECT_DIR$/.idea/gene-mapper.iml" />
-        <option value="$PROJECT_DIR$/.idea/vcs.xml" />
-        <option value="$PROJECT_DIR$/.idea/misc.xml" />
-        <option value="$PROJECT_DIR$/.idea/dbnavigator.xml" />
-        <option value="$PROJECT_DIR$/.idea/modules.xml" />
-        <option value="$PROJECT_DIR$/.idea/codeStyles/Project.xml" />
+        <option value="$PROJECT_DIR$/lib/stream-processor.js" />
       </list>
     </option>
   </component>
@@ -142,6 +156,7 @@
     <property name="nodejs.mocha.mocha_node_package_dir" value="$PROJECT_DIR$/node_modules/mocha" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
+    <property name="restartRequiresConfirmation" value="false" />
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -155,7 +170,58 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Mocha.test/unit/gene-mapper-test.js">
+  <component name="RunManager" selected="Mocha.DnaReader.read.raises a &quot;gene&quot; event for every gene discovered in the dna sequence">
+    <configuration name="DnaReader.read.raises a &quot;gene&quot; event for every gene discovered in the dna sequence" type="mocha-javascript-test-runner" temporary="true" nameIsGenerated="true">
+      <node-interpreter>project</node-interpreter>
+      <node-options />
+      <mocha-package>$PROJECT_DIR$/node_modules/mocha</mocha-package>
+      <working-directory>$PROJECT_DIR$</working-directory>
+      <pass-parent-env>true</pass-parent-env>
+      <ui>bdd</ui>
+      <extra-mocha-options />
+      <test-kind>TEST</test-kind>
+      <test-file>$PROJECT_DIR$/test/unit/gene-mapper-test.js</test-file>
+      <test-names>
+        <name value="DnaReader" />
+        <name value="read" />
+        <name value="raises a &quot;gene&quot; event for every gene discovered in the dna sequence" />
+      </test-names>
+      <method v="2" />
+    </configuration>
+    <configuration name="DnaReader.read.raises an &quot;end&quot; event through the stream when the dna stream is fully read" type="mocha-javascript-test-runner" temporary="true" nameIsGenerated="true">
+      <node-interpreter>project</node-interpreter>
+      <node-options />
+      <mocha-package>$PROJECT_DIR$/node_modules/mocha</mocha-package>
+      <working-directory>$PROJECT_DIR$</working-directory>
+      <pass-parent-env>true</pass-parent-env>
+      <ui>bdd</ui>
+      <extra-mocha-options />
+      <test-kind>TEST</test-kind>
+      <test-file>$PROJECT_DIR$/test/unit/gene-mapper-test.js</test-file>
+      <test-names>
+        <name value="DnaReader" />
+        <name value="read" />
+        <name value="raises an &quot;end&quot; event through the stream when the dna stream is fully read" />
+      </test-names>
+      <method v="2" />
+    </configuration>
+    <configuration name="DnaReader.read.raises an &quot;error&quot; through the stream when it encounters incorrect letters in the dna data sequence" type="mocha-javascript-test-runner" temporary="true" nameIsGenerated="true">
+      <node-interpreter>project</node-interpreter>
+      <node-options />
+      <mocha-package>$PROJECT_DIR$/node_modules/mocha</mocha-package>
+      <working-directory>$PROJECT_DIR$</working-directory>
+      <pass-parent-env>true</pass-parent-env>
+      <ui>bdd</ui>
+      <extra-mocha-options />
+      <test-kind>TEST</test-kind>
+      <test-file>$PROJECT_DIR$/test/unit/gene-mapper-test.js</test-file>
+      <test-names>
+        <name value="DnaReader" />
+        <name value="read" />
+        <name value="raises an &quot;error&quot; through the stream when it encounters incorrect letters in the dna data sequence" />
+      </test-names>
+      <method v="2" />
+    </configuration>
     <configuration name="geneMapper" type="mocha-javascript-test-runner" temporary="true" nameIsGenerated="true">
       <node-interpreter>project</node-interpreter>
       <node-options />
@@ -185,7 +251,10 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Mocha.DnaReader.read.raises a &quot;gene&quot; event for every gene discovered in the dna sequence" />
         <item itemvalue="Mocha.test/unit/gene-mapper-test.js" />
+        <item itemvalue="Mocha.DnaReader.read.raises an &quot;error&quot; through the stream when it encounters incorrect letters in the dna data sequence" />
+        <item itemvalue="Mocha.DnaReader.read.raises an &quot;end&quot; event through the stream when the dna stream is fully read" />
         <item itemvalue="Mocha.geneMapper" />
       </list>
     </recent_temporary>
@@ -200,44 +269,44 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1597671323654</updated>
-      <workItem from="1597671326087" duration="12441000" />
+      <workItem from="1597671326087" duration="25974000" />
     </task>
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="test_unit_gene-mapper-test_js - 2020.08.17 at 20h 36m 40s.xml">
-      <configuration name="test/unit/gene-mapper-test.js" configurationId="mocha-javascript-test-runner" />
+    <history-entry file="DnaReader_read_raises_a__gene__event_for_every_gene_discovered_in_the_dna_sequence - 2020.08.18 at 00h 57m 40s.xml">
+      <configuration name="DnaReader.read.raises a &quot;gene&quot; event for every gene discovered in the dna sequence" configurationId="mocha-javascript-test-runner" />
     </history-entry>
-    <history-entry file="test_unit_gene-mapper-test_js - 2020.08.17 at 20h 42m 36s.xml">
-      <configuration name="test/unit/gene-mapper-test.js" configurationId="mocha-javascript-test-runner" />
+    <history-entry file="DnaReader_read_raises_a__gene__event_for_every_gene_discovered_in_the_dna_sequence - 2020.08.18 at 00h 58m 27s.xml">
+      <configuration name="DnaReader.read.raises a &quot;gene&quot; event for every gene discovered in the dna sequence" configurationId="mocha-javascript-test-runner" />
     </history-entry>
-    <history-entry file="test_unit_gene-mapper-test_js - 2020.08.17 at 20h 42m 46s.xml">
-      <configuration name="test/unit/gene-mapper-test.js" configurationId="mocha-javascript-test-runner" />
+    <history-entry file="DnaReader_read_raises_a__gene__event_for_every_gene_discovered_in_the_dna_sequence - 2020.08.18 at 00h 58m 28s.xml">
+      <configuration name="DnaReader.read.raises a &quot;gene&quot; event for every gene discovered in the dna sequence" configurationId="mocha-javascript-test-runner" />
     </history-entry>
-    <history-entry file="test_unit_gene-mapper-test_js - 2020.08.17 at 20h 43m 13s.xml">
-      <configuration name="test/unit/gene-mapper-test.js" configurationId="mocha-javascript-test-runner" />
+    <history-entry file="DnaReader_read_raises_a__gene__event_for_every_gene_discovered_in_the_dna_sequence - 2020.08.18 at 00h 58m 37s.xml">
+      <configuration name="DnaReader.read.raises a &quot;gene&quot; event for every gene discovered in the dna sequence" configurationId="mocha-javascript-test-runner" />
     </history-entry>
-    <history-entry file="test_unit_gene-mapper-test_js - 2020.08.17 at 20h 43m 44s.xml">
-      <configuration name="test/unit/gene-mapper-test.js" configurationId="mocha-javascript-test-runner" />
+    <history-entry file="DnaReader_read_raises_a__gene__event_for_every_gene_discovered_in_the_dna_sequence - 2020.08.18 at 01h 00m 32s.xml">
+      <configuration name="DnaReader.read.raises a &quot;gene&quot; event for every gene discovered in the dna sequence" configurationId="mocha-javascript-test-runner" />
     </history-entry>
-    <history-entry file="test_unit_gene-mapper-test_js - 2020.08.17 at 20h 44m 00s.xml">
-      <configuration name="test/unit/gene-mapper-test.js" configurationId="mocha-javascript-test-runner" />
+    <history-entry file="DnaReader_read_raises_a__gene__event_for_every_gene_discovered_in_the_dna_sequence - 2020.08.18 at 01h 00m 33s.xml">
+      <configuration name="DnaReader.read.raises a &quot;gene&quot; event for every gene discovered in the dna sequence" configurationId="mocha-javascript-test-runner" />
     </history-entry>
-    <history-entry file="test_unit_gene-mapper-test_js - 2020.08.17 at 20h 44m 38s.xml">
-      <configuration name="test/unit/gene-mapper-test.js" configurationId="mocha-javascript-test-runner" />
+    <history-entry file="DnaReader_read_raises_a__gene__event_for_every_gene_discovered_in_the_dna_sequence - 2020.08.18 at 01h 03m 19s.xml">
+      <configuration name="DnaReader.read.raises a &quot;gene&quot; event for every gene discovered in the dna sequence" configurationId="mocha-javascript-test-runner" />
     </history-entry>
-    <history-entry file="test_unit_gene-mapper-test_js - 2020.08.17 at 20h 45m 39s.xml">
-      <configuration name="test/unit/gene-mapper-test.js" configurationId="mocha-javascript-test-runner" />
+    <history-entry file="DnaReader_read_raises_a__gene__event_for_every_gene_discovered_in_the_dna_sequence - 2020.08.18 at 01h 04m 03s.xml">
+      <configuration name="DnaReader.read.raises a &quot;gene&quot; event for every gene discovered in the dna sequence" configurationId="mocha-javascript-test-runner" />
     </history-entry>
-    <history-entry file="test_unit_gene-mapper-test_js - 2020.08.17 at 20h 46m 52s.xml">
-      <configuration name="test/unit/gene-mapper-test.js" configurationId="mocha-javascript-test-runner" />
+    <history-entry file="DnaReader_read_raises_a__gene__event_for_every_gene_discovered_in_the_dna_sequence - 2020.08.18 at 01h 04m 48s.xml">
+      <configuration name="DnaReader.read.raises a &quot;gene&quot; event for every gene discovered in the dna sequence" configurationId="mocha-javascript-test-runner" />
     </history-entry>
-    <history-entry file="test_unit_gene-mapper-test_js - 2020.08.17 at 20h 48m 17s.xml">
-      <configuration name="test/unit/gene-mapper-test.js" configurationId="mocha-javascript-test-runner" />
+    <history-entry file="DnaReader_read_raises_a__gene__event_for_every_gene_discovered_in_the_dna_sequence - 2020.08.18 at 01h 06m 10s.xml">
+      <configuration name="DnaReader.read.raises a &quot;gene&quot; event for every gene discovered in the dna sequence" configurationId="mocha-javascript-test-runner" />
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="12441000" />
+    <option name="totallyTimeSpent" value="25974000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1680" height="947" extended-state="6" />
@@ -248,18 +317,18 @@
       <window_info id="Project Explorer" />
       <window_info id="Job Explorer" />
       <window_info id="Favorites" side_tool="true" />
-      <window_info content_ui="combo" id="Project" order="0" weight="0.24954791" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.24954791" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info anchor="bottom" id="Console" />
       <window_info anchor="bottom" id="DB Execution Console" />
       <window_info anchor="bottom" id="Docker" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Version Control" />
+      <window_info anchor="bottom" id="Version Control" weight="0.32932693" />
       <window_info anchor="bottom" id="Terminal" weight="0.33052886" />
       <window_info anchor="bottom" id="Event Log" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.32932693" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.32932693" />
+      <window_info active="true" anchor="bottom" id="Debug" order="3" visible="true" weight="0.6141827" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
@@ -273,18 +342,18 @@
       <window_info id="Project Explorer" order="2" />
       <window_info id="Job Explorer" order="3" />
       <window_info id="Favorites" order="4" side_tool="true" />
-      <window_info content_ui="combo" id="Project" order="5" visible="true" weight="0.24954791" />
+      <window_info content_ui="combo" id="Project" order="5" weight="0.24954791" />
       <window_info id="Structure" order="6" side_tool="true" weight="0.25" />
       <window_info anchor="bottom" id="Console" order="0" />
       <window_info anchor="bottom" id="DB Execution Console" order="1" />
       <window_info anchor="bottom" id="Docker" order="2" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Version Control" order="3" />
+      <window_info anchor="bottom" id="Version Control" order="3" weight="0.32932693" />
       <window_info anchor="bottom" id="Terminal" order="4" weight="0.33052886" />
       <window_info anchor="bottom" id="Event Log" order="5" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="6" />
       <window_info anchor="bottom" id="Find" order="7" />
       <window_info active="true" anchor="bottom" id="Run" order="8" visible="true" weight="0.32932693" />
-      <window_info anchor="bottom" id="Debug" order="9" weight="0.4" />
+      <window_info anchor="bottom" id="Debug" order="9" weight="0.39903846" />
       <window_info anchor="bottom" id="Cvs" order="10" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="11" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="12" />
@@ -295,6 +364,56 @@
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/test/unit/gene-mapper-test.js</url>
+          <line>87</line>
+          <properties lambdaOrdinal="-1" />
+          <option name="timeStamp" value="25" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/test/unit/gene-mapper-test.js</url>
+          <line>82</line>
+          <properties lambdaOrdinal="-1" />
+          <option name="timeStamp" value="26" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/lib/stream-processor.js</url>
+          <line>80</line>
+          <properties lambdaOrdinal="-1" />
+          <option name="timeStamp" value="30" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/test/unit/gene-mapper-test.js</url>
+          <line>243</line>
+          <properties lambdaOrdinal="-1" />
+          <option name="timeStamp" value="41" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/lib/stream-processor.js</url>
+          <line>33</line>
+          <properties lambdaOrdinal="-1" />
+          <option name="timeStamp" value="42" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+  </component>
+  <component name="debuggerHistoryManager">
+    <expressions id="evaluateExpression">
+      <expression>
+        <expression-string>stringChunk[chunkIndex]</expression-string>
+        <language-id>JavaScript</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>PERMITTED_LETTERS.indexOf(currentLetter) &gt;= 0</expression-string>
+        <language-id>JavaScript</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+    </expressions>
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/node_modules/chai/lib/chai/utils/proxify.js">
@@ -327,18 +446,22 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/lib/dna-reader.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="375">
-          <caret line="25" column="13" selection-start-line="25" selection-start-column="13" selection-end-line="25" selection-end-column="13" />
+        <state relative-caret-position="150">
+          <caret line="38" column="20" selection-start-line="38" selection-start-column="20" selection-end-line="38" selection-end-column="20" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/test/unit/gene-mapper-test.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="93">
-          <caret line="92" selection-start-line="92" selection-end-line="92" />
-          <folding>
-            <element signature="e#7394#7413#0" />
-          </folding>
+        <state relative-caret-position="134">
+          <caret line="243" column="8" selection-start-line="243" selection-start-column="8" selection-end-line="243" selection-end-column="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/stream-processor.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="171">
+          <caret line="58" column="21" selection-start-line="58" selection-start-column="21" selection-end-line="58" selection-end-column="21" />
         </state>
       </provider>
     </entry>
