@@ -31,12 +31,10 @@ describe ('geneMapper', () => {
                 [],
                 () => {}];
 
-            const dnaReader = geneMapper.getDnaReader(badStreamValues);
-
             badStreamValues.forEach((badReadStream) => {
-                expect((() => {
-                    const dnaReader = geneMapper.getDnaReader(badReadStream, goodGenePrefix, goodGenePrefix);
-                })()).to.throw('Incorrect data stream');
+                expect(() => {
+                    const dnaReader = geneMapper.getDnaReader(badReadStream, goodGenePrefix);
+                }).to.throw('Incorrect dna stream');
             });
         });
 
@@ -48,7 +46,7 @@ describe ('geneMapper', () => {
 
             badPrefixValues.forEach((badGenePrefix) => {
                 expect(() => {
-                    const dnaReader = geneMapper.getDnaReader(badReadStream, goodGenePrefix);
+                    const dnaReader = geneMapper.getDnaReader(goodReadStream, badPrefixValues);
                 }).to.throw('Incorrect gene prefix');
             });
         });
@@ -92,9 +90,6 @@ describe('DnaReader', () => {
                 });
 
                 dnaReader.read();
-
-                // Destroy the stream. This should trigger the 'error' event
-                dnaStream.destroy();
             }), 500, 'Dna mapping did not fail on time.');
 
         });
@@ -156,7 +151,7 @@ describe('DnaReader', () => {
 
             // Split a gene string in two:
             const geneToSplit = originalGenes[6];
-            const half = Math.Floor(geneToSplit.length < 2);
+            const half = Math.floor(geneToSplit.length < 2);
             const firstHalf = geneToSplit.slice(0, half);
             const secondHalf = geneToSplit.slice(0, half);
 
