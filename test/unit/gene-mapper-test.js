@@ -12,16 +12,13 @@ describe ('geneMapper', () => {
         it('returns an instance of DnaReader', () => {
             const readStream = Readable.from(['AAA']);
             const genePrefix = 'A';
-            const dnaReader = geneMapper.getDnaReader();
+            const dnaReader = geneMapper.getDnaReader(readStream, genePrefix);
 
             expect(dnaReader instanceof DnaReader).to.eq(true);
+
+            expect(typeof dnaReader.on).to.eq('function');
+            expect(typeof dnaReader.read).to.eq('function');
         });
-    });
-});
-
-describe('DnaReader', () => {
-
-    describe('read', () => {
 
         it('Raises an exception when the readStream parameter is incorrect', () => {
             const goodGenePrefix = 'A';
@@ -34,11 +31,11 @@ describe('DnaReader', () => {
                 [],
                 () => {}];
 
-            const dnaReader = geneMapper.getDnaReader();
+            const dnaReader = geneMapper.getDnaReader(badStreamValues);
 
             badStreamValues.forEach((badReadStream) => {
                 expect((() => {
-                    dnaReader.read(badReadStream, goodGenePrefix);
+                    const dnaReader = geneMapper.getDnaReader(badReadStream, goodGenePrefix, goodGenePrefix);
                 })()).to.throw('Incorrect data stream');
             });
         });
@@ -51,23 +48,29 @@ describe('DnaReader', () => {
 
             badPrefixValues.forEach((badGenePrefix) => {
                 expect(() => {
-                    dnaReader.read(badReadStream, goodGenePrefix);
+                    const dnaReader = geneMapper.getDnaReader(badReadStream, goodGenePrefix);
                 }).to.throw('Incorrect gene prefix');
             });
         });
+    });
+});
+
+describe('DnaReader', () => {
+
+    describe('read', () => {
 
         it('raises an "end" event through the stream when the dna stream is fully read', async () => {
             const readStream = Readable.from(['AAA']);
             const genePrefix = 'A';
 
-            const dnaReader = geneMapper.getDnaReader();
+            const dnaReader = geneMapper.getDnaReader(readStream, genePrefix);
 
             return _setPromiseTimeout(new Promise((resolve, reject) => {
                 dnaReader.on('end', () => {
                     resolve();
                 });
 
-                dnaReader.read(readStream, genePrefix);
+                dnaReader.read();
             }), 500, 'Dna mapping did not complete on time.');
         });
 
@@ -75,7 +78,7 @@ describe('DnaReader', () => {
             const readStreamWithBadData = Readable.from(['AAAKAAA']);
             const genePrefix = 'A';
 
-            const dnaReader = geneMapper.getDnaReader();
+            const dnaReader = geneMapper.getDnaReader(readStreamWithBadData, genePrefix);
 
             return _setPromiseTimeout(new Promise((resolve, reject) => {
                 dnaReader.on('end', () => {
@@ -88,7 +91,7 @@ describe('DnaReader', () => {
                     resolve();
                 });
 
-                dnaReader.read(readStreamWithBadData, genePrefix);
+                dnaReader.read();
 
                 // Destroy the stream. This should trigger the 'error' event
                 dnaStream.destroy();
@@ -100,7 +103,7 @@ describe('DnaReader', () => {
             const dnaStream = new PassThrough();
             const genePrefix = 'A';
 
-            const dnaReader = geneMapper.getDnaReader();
+            const dnaReader = geneMapper.getDnaReader(dnaStream, genePrefix);
             return _setPromiseTimeout(new Promise((resolve, reject) => {
                 dnaReader.on('end', () => {
                     reject('gene stream was supposed to fail');
@@ -112,7 +115,7 @@ describe('DnaReader', () => {
                     resolve();
                 });
 
-                dnaReader.read(dnaStream, genePrefix);
+                dnaReader.read();
 
                 // Destroy the stream. This should trigger the 'error' event
                 dnaStream.destroy();
@@ -213,7 +216,7 @@ const _generateGenes = (count, maxLength, prefix) => {
 };
 
 const _expectDiscoveredGenes = async (originalGenes, dnaReadStream, genePrefix) => {
-    const dnaReader = geneMapper.getDnaReader();
+    const dnaReader = geneMapper.getDnaReader(dnaReadStream, genePrefix);
 
     // Read dna stream and collect incoming events, within a timeout
     const discoveredGenes = [];
@@ -230,7 +233,7 @@ const _expectDiscoveredGenes = async (originalGenes, dnaReadStream, genePrefix) 
             reject(msg);
         });
 
-        dnaReader.read(dnaReadStream, genePrefix);
+        dnaReader.read();
     }), 500, 'Dna mapping did not complete on time.');
 
     expect(discoveredGenes.length).to.eq(originalGenes.length);
