@@ -62,8 +62,8 @@ describe('DnaReader', () => {
 
             const dnaReader = geneMapper.getDnaReader();
 
-            _setPromiseTimeout(new Promise((resolve, reject) => {
-                geneMapper.on('end', () => {
+            return _setPromiseTimeout(new Promise((resolve, reject) => {
+                dnaReader.on('end', () => {
                     resolve();
                 });
 
@@ -77,7 +77,7 @@ describe('DnaReader', () => {
 
             const dnaReader = geneMapper.getDnaReader();
 
-            _setPromiseTimeout(new Promise((resolve, reject) => {
+            return _setPromiseTimeout(new Promise((resolve, reject) => {
                 dnaReader.on('end', () => {
                     reject('gene stream was supposed to fail');
                 });
@@ -101,7 +101,7 @@ describe('DnaReader', () => {
             const genePrefix = 'A';
 
             const dnaReader = geneMapper.getDnaReader();
-            _setPromiseTimeout(new Promise((resolve, reject) => {
+            return _setPromiseTimeout(new Promise((resolve, reject) => {
                 dnaReader.on('end', () => {
                     reject('gene stream was supposed to fail');
                 });
