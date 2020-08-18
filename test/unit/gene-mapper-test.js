@@ -121,7 +121,7 @@ describe('DnaReader', () => {
         it('raises a "gene" event for every gene discovered in the dna sequence', async () => {
             // Generate a dna sequence
             const genePrefix = 'AAAAAAA';
-            const originalGenes = ['AAAAAAAACCCC', 'AAAAAAAATG']; // _generateGenes(10, 8, genePrefix);
+            const originalGenes = _generateGenes(4, 8, genePrefix);
             const dnaSequence = originalGenes.join('');
 
 
@@ -134,13 +134,12 @@ describe('DnaReader', () => {
 
         it('can consume long streams read with multiple data chunks', async () => {
             const genePrefix = 'AAAAAAA';
-            const originalGenes = _generateGenes(15, 8, genePrefix);
-            console.log(originalGenes);
+            const originalGenes = _generateGenes(15, 8, genePrefix).sort();
 
             const dnaStreamSplit = [
-                originalGenes.slice(0, 6).join(''),
-                originalGenes.slice(7, 12).join(''),
-                originalGenes.slice(13, 14).join('') ];
+                originalGenes.slice(0, 9).join(''),
+                originalGenes.slice(9, 13).join(''),
+                originalGenes.slice(13, 16).join('') ];
 
             const dnaReadStream = Readable.from(dnaStreamSplit);
 
@@ -154,15 +153,15 @@ describe('DnaReader', () => {
 
             // Split a gene string in two:
             const geneToSplit = originalGenes[6];
-            const half = Math.floor(geneToSplit.length < 2);
-            const firstHalf = geneToSplit.slice(0, half);
-            const secondHalf = geneToSplit.slice(0, half);
+            const half = Math.floor(geneToSplit.length / 2);
+            const firstHalf = geneToSplit.slice(0, half + 1);
+            const secondHalf = geneToSplit.slice(half + 1, geneToSplit.length);
 
             // Put the two halves in two separate chunks
             const dnaStreamSplit = [
-                originalGenes.slice(0, 5).join('') + firstHalf,
-                secondHalf + originalGenes.slice(7, 12).join(''),
-                originalGenes.slice(13, 14).join('') ];
+                originalGenes.slice(0, 6).join('') + firstHalf,
+                secondHalf + originalGenes.slice(7, 13).join(''),
+                originalGenes.slice(13, 16).join('') ];
 
             const dnaReadStream = Readable.from(dnaStreamSplit);
 
@@ -200,12 +199,16 @@ const _generateGenes = (count, maxLength, prefix) => {
 
     const genes = [];
     for(let geneIndex = 0; geneIndex < count; geneIndex ++) {
-        const numOfCharactersInGene = Math.floor(Math.random() * maxLength) + 1;
         let geneString = '';
+
+        const numOfCharactersInGene = Math.floor(Math.random() * maxLength);
         for (let charIndex = 0; charIndex < numOfCharactersInGene; charIndex++) {
-            const nextChar = geneLetters[Math.floor(Math.random() * 4)];
-            geneString += nextChar;
+            geneString += geneLetters[Math.floor(Math.random() * 4)];
         }
+
+        // Make sure that the last letter is not 'A', since there is no way to determine whether that A belongs to the previous or next gene
+        geneString += geneLetters[Math.floor(Math.random() * 3) + 1];
+
         geneString = prefix + geneString;
 
         genes.push(geneString);
@@ -241,6 +244,6 @@ const _expectDiscoveredGenes = async (originalGenes, dnaReadStream, genePrefix) 
     const sortedDiscoveredGenes = discoveredGenes.sort();
 
     for (let i = 0; i < sortedOriginalGenes.length; i++) {
-        expect(sortedOriginalGenes[i]).to.eq(sortedDiscoveredGenes[i]);
+        expect(sortedDiscoveredGenes[i]).to.eq(sortedOriginalGenes[i]);
     }
 };
