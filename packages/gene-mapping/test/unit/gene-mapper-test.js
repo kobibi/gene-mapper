@@ -5,7 +5,7 @@ const { Readable, PassThrough}  = require('stream');
 
 const { expect, assert } = require('chai');
 
-describe ('geneMapper', () => {
+describe ('geneMapping', () => {
 
     describe('getDnaReader', () => {
 
@@ -109,7 +109,7 @@ describe('DnaReader', () => {
                 dnaReader.on('gene', (gene) => {
 
                     // emit an error before the stream ends
-                    dnaReadStream.emit('error', new Error('Stream error.'));
+                    dnaReadStream.emit('error', new Error('An error has occurred while reading the stream.'));
                     console.log(gene);
                 });
 

@@ -1,11 +1,10 @@
 {
   "name": "gene-mapper",
   "version": "1.0.0",
-  "description": "A node package for mapping genes in a DNA sequence",
-  "main": "index.js",
+  "description": "A solution for mapping DNA strings and looking up genes",
   "scripts": {
     "test": "npm run test:unit",
-    "test:unit": "mocha test/unit/*"
+    "test:unit": "mocha packages/gene-mapping/test/unit/*"
   },
   "repository": {
     "type": "git",
@@ -21,10 +20,7 @@
   },
   "homepage": "https://github.com/kobibi/gene-mapper#readme",
   "devDependencies": {
-    "chai": "^4.2.0",
-    "mocha": "^8.1.1"
+    "lerna": "^3.22.1"
   },
-  "dependencies": {
-    "is-stream": "^2.0.0"
-  }
+  "dependencies": {}
 }

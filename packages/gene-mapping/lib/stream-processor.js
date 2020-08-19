@@ -61,7 +61,7 @@ const processDnaStream = (readStream, genePrefix, dispatchEvent) => {
     });
 
     readStream.on('error', (err) => {
-        dispatchEvent('error', 'An error has occurred while reading the stream.');
+        dispatchEvent('error', err.message);
     });
 
 };
