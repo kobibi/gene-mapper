@@ -95,11 +95,24 @@ describe('DnaReader', () => {
         });
 
         it('raises an "error" through the stream when there is a problem with the dna stream', async () => {
-            const dnaStream = new PassThrough();
-            const genePrefix = 'A';
+            // Generate a dna sequence
+            const genePrefix = 'AAAAAAA';
+            const originalGenes = _generateGenes(4, 8, genePrefix);
+            const dnaSequence = originalGenes.join('');
 
-            const dnaReader = geneMapper.getDnaReader(dnaStream, genePrefix);
+            // Create a read stream from the dna data
+            const dnaReadStream = new PassThrough();
+            dnaReadStream.write(dnaSequence);
+            const dnaReader = geneMapper.getDnaReader(dnaReadStream, genePrefix);
             return _setPromiseTimeout(new Promise((resolve, reject) => {
+
+                dnaReader.on('gene', (gene) => {
+
+                    // emit an error before the stream ends
+                    dnaReadStream.emit('error', new Error('Stream error.'));
+                    console.log(gene);
+                });
+
                 dnaReader.on('end', () => {
                     reject('gene stream was supposed to fail');
                 });
@@ -111,10 +124,9 @@ describe('DnaReader', () => {
                 });
 
                 dnaReader.read();
-
-                // Destroy the stream. This should trigger the 'error' event
-                dnaStream.destroy();
             }), 500, 'Dna mapping did not fail on time.');
+
+            dnaReadStream.write(dnaSequence);
 
         });
 
@@ -123,8 +135,6 @@ describe('DnaReader', () => {
             const genePrefix = 'AAAAAAA';
             const originalGenes = _generateGenes(4, 8, genePrefix);
             const dnaSequence = originalGenes.join('');
-
-
 
             // Create a read stream from the dna data
             const dnaReadStream = Readable.from([dnaSequence]);
