@@ -1,0 +1,29 @@
+{
+  "name": "gene-mapper",
+  "version": "1.0.0",
+  "description": "A node package for mapping genes in a DNA sequence",
+  "main": "packages/gene-mapping/index.js",
+  "scripts": {
+    "test": "npm run test:unit",
+    "test:unit": "mocha test/unit/*"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kobibi/gene-mapper.git"
+  },
+  "keywords": [
+    "gene"
+  ],
+  "author": "Kobi Shitrit",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/kobibi/gene-mapper/issues"
+  },
+  "devDependencies": {
+    "chai": "^4.2.0",
+    "mocha": "^8.1.1"
+  },
+  "dependencies": {
+    "is-stream": "^2.0.0"
+  }
+}
