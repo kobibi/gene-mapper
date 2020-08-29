@@ -5,6 +5,8 @@ const { Readable, PassThrough}  = require('stream');
 
 const { expect, assert } = require('chai');
 
+const { generateGenes } = require('../../utils/gene-generator');
+
 describe ('geneMapping', () => {
 
     describe('getDnaReader', () => {
@@ -97,7 +99,7 @@ describe('DnaReader', () => {
         it('raises an "error" through the stream when there is a problem with the dna stream', async () => {
             // Generate a dna sequence
             const genePrefix = 'AAAAAAA';
-            const originalGenes = _generateGenes(4, 8, genePrefix);
+            const originalGenes = generateGenes(4, 8, genePrefix);
             const dnaSequence = originalGenes.join('');
 
             // Create a read stream from the dna data
@@ -133,7 +135,7 @@ describe('DnaReader', () => {
         it('raises a "gene" event for every gene discovered in the dna sequence', async () => {
             // Generate a dna sequence
             const genePrefix = 'AAAAAAA';
-            const originalGenes = _generateGenes(4, 8, genePrefix);
+            const originalGenes = generateGenes(4, 8, genePrefix);
             const dnaSequence = originalGenes.join('');
 
             // Create a read stream from the dna data
@@ -144,7 +146,7 @@ describe('DnaReader', () => {
 
         it('can consume long streams read with multiple data chunks', async () => {
             const genePrefix = 'AAAAAAA';
-            const originalGenes = _generateGenes(15, 8, genePrefix).sort();
+            const originalGenes = generateGenes(15, 8, genePrefix).sort();
 
             const dnaStreamSplit = [
                 originalGenes.slice(0, 9).join(''),
@@ -159,7 +161,7 @@ describe('DnaReader', () => {
         it('identifies gene sequences which got split between data chunks', async () => {
             const genePrefix = 'AAAAAAA';
 
-            const originalGenes = _generateGenes(15, 8, genePrefix);
+            const originalGenes = generateGenes(15, 8, genePrefix);
 
             // Split a gene string in two:
             const geneToSplit = originalGenes[6];
@@ -204,28 +206,7 @@ const _setPromiseTimeout = async (expectedPromise, timeout, timeIsUpErrorMsg) =>
 };
 
 
-const _generateGenes = (count, maxLength, prefix) => {
-    const geneLetters = ['A', 'C', 'G', 'T'];
 
-    const genes = [];
-    for(let geneIndex = 0; geneIndex < count; geneIndex ++) {
-        let geneString = '';
-
-        const numOfCharactersInGene = Math.floor(Math.random() * maxLength);
-        for (let charIndex = 0; charIndex < numOfCharactersInGene; charIndex++) {
-            geneString += geneLetters[Math.floor(Math.random() * 4)];
-        }
-
-        // Make sure that the last letter is not 'A', since there is no way to determine whether that A belongs to the previous or next gene
-        geneString += geneLetters[Math.floor(Math.random() * 3) + 1];
-
-        geneString = prefix + geneString;
-
-        genes.push(geneString);
-    }
-
-    return genes;
-};
 
 const _expectDiscoveredGenes = async (originalGenes, dnaReadStream, genePrefix) => {
     const dnaReader = geneMapper.getDnaReader(dnaReadStream, genePrefix);

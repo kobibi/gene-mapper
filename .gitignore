@@ -102,3 +102,6 @@ dist
 
 # TernJS port file
 .tern-port
+
+# The DNA data file
+/Users/kobi.shitrit/try/gene-mapper/packages/gene-mapping-service/dna.txt
