@@ -9,7 +9,8 @@ const { initialize } = require('./lib/services/genes-service');
 
 const args = process.argv.slice(2);
 
-const genePrefix = 'AAAAAAAAA';
+const genePrefix = process.env.GENE_PREFIX;
+console.log("#####" + genePrefix);
 
 const app = express();
 app.use(routes);
@@ -20,5 +21,9 @@ initialize(dnaFilePath, genePrefix)
     .then(() => {
         app.listen(3000);
         console.log("#########################################################################Server is listening on port 3000...");
+    })
+    .catch((err) => {
+        console.error(err);
+        process.exit(1)
     });
 

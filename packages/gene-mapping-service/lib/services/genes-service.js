@@ -12,11 +12,11 @@ const _validateFilePath = async (filePath) => {
         if (fs.existsSync(filePath)) {
             return null;                // nul === everything is alright :)
         }
-        return 'Invalid file path'; // Security wise - you don't want to give out information as to which files exist on your machine...
+        return 'Invalid file path: ' + filePath;
     }
     catch(err) {
         console.error(err);
-        return ['Unable to validate file'];
+        return 'Unable to validate file';
     }
 };
 
