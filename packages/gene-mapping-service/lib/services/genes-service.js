@@ -20,8 +20,8 @@ const _validateFilePath = async (filePath) => {
     }
 };
 
-const geneExists = async(gene) => {
-    return genesRepository.geneExists(gene);
+const doesGeneExist = async(gene) => {
+    return genesRepository.doesGeneExist(gene);
 };
 
 const initialize = async (dnaFilePath, genePrefix) => {
@@ -30,7 +30,7 @@ const initialize = async (dnaFilePath, genePrefix) => {
         throw new Error(validationError);
     }
 
-    return new Promise((reject, resolve) => {
+    return new Promise((resolve, reject) => {
         const fileStream = fs.createReadStream(dnaFilePath);
 
         const dnaReader = geneMapper.getDnaReader(fileStream, genePrefix);
@@ -52,4 +52,4 @@ const initialize = async (dnaFilePath, genePrefix) => {
     });
 };
 
-module.exports = { initialize, geneExists };
+module.exports = { initialize, doesGeneExist};

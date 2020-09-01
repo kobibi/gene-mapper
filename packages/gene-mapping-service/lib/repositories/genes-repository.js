@@ -1,19 +1,79 @@
-let
-    redis     = require('redis'),
-    /* Values are hard-coded for this example, it's usually best to bring these in via file or environment variable for production */
-    client    = redis.createClient({
-        port      : 6379,               // replace with your port
-        host      : '120.0.0.1',        // replace with your hostanme or IP address
-        password  : 'your password',    // replace with your password
+const redis     = require('redis');
+
+    const redisClient = redis.createClient({
+        port      : process.env.REDIS_PORT,
+        host      : process.env.REDIS_HOST
     });
 
+/**
+ * Promisify the redisClient.set function
+ * @param key
+ * @param value
+ * @returns {Promise<any>}
+ * @private
+ */
+const _redisSet = (key, value) => {
+    return new Promise((resolve, reject) => {
+        redisClient.set(key, value, function (err) {
+            if (err) {
+                reject(err); /* in production, handle errors more gracefully */
+            } else {
+                resolve();
+            }
+        });
+    });
+};
+
+/**
+ * Promisify the redisClient.get function
+ * @param key
+ * @param value
+ * @returns {Promise<any>}
+ * @private
+ */
+const _redisGet = (key) => {
+    return new Promise((resolve, reject) => {
+        redisClient.get(key, function (err, value) {
+            if (err) {
+                reject(err);
+            } else {
+                resolve(value);
+            }
+        });
+    });
+};
+
+/**
+ * Save a gene to redis.
+ * The value is a simple 'true', since we only want to check the existence of the key, and nothing more.
+ * @param gene
+ * @returns {Promise<void>}
+ */
 const saveGene = async(gene) => {
-    console.log(gene);
-
+    await _redisSet(gene, true);
+    console.log('successfully saved gene: ' + gene);
 };
 
-const geneExists = async(gene) => {
-    return true;
+/**
+ * Check if a gene exists in redis.
+ * @param gene
+ * @returns {Promise<boolean>} - either 'true' - if the value exsits, or 'false' - otherwise
+ */
+const doesGeneExist = async(gene) => {
+    try {
+        const value = await _redisGet(gene);
+        return {
+            success: true,
+            result: !!value
+        };
+    }
+    catch (err) {
+        console.error(err);
+        return {
+            success: false,
+            error: 'An error occurred while trying to locate gene.'
+        }
+    }
 };
 
-module.exports = { saveGene, geneExists };
+module.exports = { saveGene, doesGeneExist };
